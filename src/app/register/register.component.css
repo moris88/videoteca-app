@@ -1,0 +1,18 @@
+.container{
+    background-color: aliceblue;
+}
+
+.btn:hover{
+    box-shadow: 5px 5px 7px 5px rgb(165, 165, 165);
+}
+
+#row_email{
+    margin: 10px 300px;
+}
+
+@media only screen and (max-width: 992px) {
+    #row_email{
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+}

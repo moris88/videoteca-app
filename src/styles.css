@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+    font-family: 'Cormorant Unicase', serif;
+    font-family: 'Della Respira', serif;
+    background-color:rgb(112, 184, 255);
+    box-sizing: border-box;
+}
+
+#content-wrap{
+    padding-bottom: 4rem !important;
+}
+
+#page-container{
+    position: relative;
+    min-height: 91vh;
+}

@@ -1,0 +1,107 @@
+<div class="row mt-3">
+    <h1 class="text-center">Inserisci Film</h1>
+</div>
+<div class="container border rounded shadow">
+    <div *ngIf="errors.length > 0" class="row justify-content-center alert alert-danger mt-3" role="alert">
+        <ul *ngFor="let error of errors">
+            <li>{{ error }}</li>
+        </ul>
+    </div>
+    <div class="row justify-content-between mt-3">
+        <div class="col-md-6 mt-1">
+            <input [(ngModel)]="film.titolo" id="titolo" name="titolo" type="text" class="form-control" placeholder="Inserisci Titolo" >
+        </div>
+        <div class="col-md-6 mt-1">
+            <select [(ngModel)]="film.genere" class="form-control" name="genere_id" id="genere_id">
+                <option value="0" selected>Inserisci un Genere</option>
+                <option *ngFor="let genere of generi" value="{{ genere.id }}">{{ genere.tipo }}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-md-4 mt-1">
+            <input [(ngModel)]="film.durata" id="durata" name="durata" type="number" min="0" max="240" class="form-control" step="1" placeholder="Inserisci Durata"/>
+        </div>
+        <div class="col-md-4 mt-1">
+            <input [(ngModel)]="film.anno" id="anno" name="anno" type="number" min="1900" max="2099" class="form-control" step="1" placeholder="Inserisci Anno"/>
+        </div>
+        <div class="col-md-4 mt-1">
+            <select [(ngModel)]="film.valutazione" class="form-control" name="valutazione" id="valutazione">
+                <option value="0">Inserisci Valutazione</option>
+                <option value="1">&hearts;</option>
+                <option value="2">&hearts;&hearts;</option>
+                <option value="3">&hearts;&hearts;&hearts;</option>
+                <option value="4">&hearts;&hearts;&hearts;&hearts;</option>
+                <option value="5">&hearts;&hearts;&hearts;&hearts;&hearts;</option>
+            </select>
+        </div>
+    </div>
+    <div class="row justify-content-between">
+        <div class="col-md-12 mt-2">
+            <label for="trama">Trama</label>
+            <textarea [(ngModel)]="film.trama" class="form-control" name="trama" id="trama" cols="30" rows="10"></textarea>
+        </div>
+    </div>
+    <div class="row justify-content-between mt-3">
+        <div class="col-md-6 mt-1">
+            <input [(ngModel)]="film.trailer" id="trailer" name="trailer" type="text" class="form-control" placeholder="Inserisci link Trailer">
+        </div>
+        <div class="col-md-6 mt-1">
+            <input [(ngModel)]="film.posizione" id="posizione" name="posizione" type="text" class="form-control" placeholder="Inserisci Posizione">
+        </div>
+    </div> 
+    <div class="row justify-content-center mt-3">
+        <div class="col-lg-auto mt-1">
+            <input type="file" #file class="form-control" id="file" name="file">
+        </div>
+        <div class="col-lg-auto mt-1">
+            <button class="btn btn-secondary" (file)="''" (click)="deleteData()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                    <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+                Cancella File
+            </button>
+        </div>
+    </div>
+    <div class="row justify-content-center mb-3 mt-3">
+        <div class="col-lg-2">
+            <button type="submit" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-save" viewBox="0 0 16 16">
+                    <path d="M2 1a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H9.5a1 1 0 0 0-1 1v7.293l2.646-2.647a.5.5 0 0 1 .708.708l-3.5 3.5a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L7.5 9.293V2a2 2 0 0 1 2-2H14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h2.5a.5.5 0 0 1 0 1H2z"/>
+                </svg>
+                Salva
+            </button>
+        </div>
+        <div class="col-lg-2">
+            <button class="btn btn-danger w-100 mt-2" (click)="reset()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-repeat" viewBox="0 0 16 16">
+                    <path d="M11.534 7h3.932a.25.25 0 0 1 .192.41l-1.966 2.36a.25.25 0 0 1-.384 0l-1.966-2.36a.25.25 0 0 1 .192-.41zm-11 2h3.932a.25.25 0 0 0 .192-.41L2.692 6.23a.25.25 0 0 0-.384 0L.342 8.59A.25.25 0 0 0 .534 9z"/>
+                    <path fill-rule="evenodd" d="M8 3c-1.552 0-2.94.707-3.857 1.818a.5.5 0 1 1-.771-.636A6.002 6.002 0 0 1 13.917 7H12.9A5.002 5.002 0 0 0 8 3zM3.1 9a5.002 5.002 0 0 0 8.757 2.182.5.5 0 1 1 .771.636A6.002 6.002 0 0 1 2.083 9H3.1z"/>
+                </svg>
+                Reset
+            </button>
+        </div>
+    </div>
+    <!-- Modal Confirm -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">SALVATAGGIO</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>"Sei sicuro di salvare?"</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NO</button>
+                <button type="submit" class="btn btn-success mx-1" data-bs-dismiss="modal" (click)="save(file)">SI</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+ 
+
+

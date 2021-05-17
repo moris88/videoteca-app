@@ -1,0 +1,101 @@
+<div class="row mt-5">
+    <h4 class="text-center">--- Ricerca ---</h4>
+</div>
+<div class="container mt-5 alert alert-info border rounded shadow">   
+    <div id="areaRicerca" class="row justify-content-center">
+        <h6 class="text-center mt-3">Area Ricerche</h6>
+
+        <div *ngIf="error !== ''" class="alert alert-danger" role="alert">
+            <p class="text-center">{{ error }}</p>
+        </div>
+        <div class="col-md-auto input-group mb-3">
+            <input *ngIf="chooseSearch() === 1" type="text" [(ngModel)]="wordSearch" class="form-control" placeholder="Che titolo vuoi carcare?" aria-label="search" aria-describedby="search">
+
+            <input *ngIf="chooseSearch() === 2" type="number" [(ngModel)]="wordSearch" class="form-control" placeholder="Che anno vuoi carcare?" aria-label="search" aria-describedby="search" step="1">
+
+            <label *ngIf="chooseSearch() === 3" for="valutazione" class="input-group-text">Che valutazione vuoi cercare?</label>
+            <select *ngIf="chooseSearch() === 3" [(ngModel)]="wordSearch" class="form-control" name="valutazione" id="valutazione">
+                <option value="0">--Valutazione--</option>
+                <option value="1">&hearts;</option>
+                <option value="2">&hearts;&hearts;</option>
+                <option value="3">&hearts;&hearts;&hearts;</option>
+                <option value="4">&hearts;&hearts;&hearts;&hearts;</option>
+                <option value="5">&hearts;&hearts;&hearts;&hearts;&hearts;</option>
+            </select>
+
+            <label *ngIf="chooseSearch() === 4" for="genere" class="input-group-text">Che genere vuoi cercare?</label>
+            <select *ngIf="chooseSearch() === 4" [(ngModel)]="wordSearch" class="form-control" name="genere" id="genere">
+                <option value="0">--Genere--</option>
+                <option *ngFor="let genere of generi" value="{{ genere.id }}">{{ genere.tipo }}</option>
+            </select>
+
+            <button type="submit" class="btn btn-outline-primary" (click)="sendSearch()">Cerca</button>
+        </div>
+        <div class="col-md-auto form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked (click)="changeSearch(1)">
+            <label class="form-check-label" for="flexRadioDefault1">
+            Cerca per titolo
+            </label>
+        </div>
+        <div class="col-md-auto form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" (click)="changeSearch(2)">
+            <label class="form-check-label" for="flexRadioDefault2">
+            Cerca per anno
+            </label>
+        </div>
+        <div class="col-md-auto form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" (click)="changeSearch(3)">
+            <label class="form-check-label" for="flexRadioDefault3">
+            Cerca per valutazione
+            </label>
+        </div>
+        <div class="col-md-auto form-check">
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" (click)="changeSearch(4)">
+            <label class="form-check-label" for="flexRadioDefault4">
+            Cerca per genere
+            </label>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-3">
+        <div class="col-md-auto">
+            <a class="btn btn-primary" routerLink="/home/films">vai alla lista film</a>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="viewSearch === true" id="tabella" class="container mt-5 border rounded shadow">
+    <div class="row table-responsive" *ngIf="filmsSearch.length > 0">
+        <h6 class="text-center mt-3">Risultato Ricerche</h6>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Titolo</th>
+                    <th scope="col"></th>
+                    <th class="col-hidden" scope="col">Genere</th>
+                    <th class="col-hidden" scope="col">Durata</th>
+                    <th class="col-hidden" scope="col">Valutazione</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let film of filmsSearch" (click)="openURL(film.id)">
+                    <!-- lista dei film -->
+                    <th scope="row"> {{ film.id }} </th>
+                    <th scope="row" colspan="2"> <span class="align-self-center">{{ film.titolo }}</span> </th>
+                    <th class="col-hidden" scope="row"> {{ film.genere }} </th>
+                    <th class="col-hidden" scope="row"> {{ film.durata }} min </th>
+        
+                    <th class="col-hidden" scope="row" *ngIf="film.valutazione==0"> </th>
+                    <th class="col-hidden" scope="row" *ngIf="film.valutazione==1"> &hearts; </th>
+                    <th class="col-hidden" scope="row" *ngIf="film.valutazione==2"> &hearts;&hearts; </th>
+                    <th class="col-hidden" scope="row" *ngIf="film.valutazione==3"> &hearts;&hearts;&hearts; </th>
+                    <th class="col-hidden" scope="row" *ngIf="film.valutazione==4"> &hearts;&hearts;&hearts;&hearts; </th>
+                    <th class="col-hidden" scope="row" *ngIf="film.valutazione==5"> &hearts;&hearts;&hearts;&hearts;&hearts; </th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" *ngIf="filmsSearch.length === 0">
+        <p class="text-center pt-3 pb-3">Nessun Film Trovato!</p>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+.film_image {
+    width: 25rem;
+}
+
+.container{
+    background-color: aliceblue;
+}
+
+@media only screen and (max-width: 768px) {
+    .film_image {
+        padding-left: 30%;
+        padding-right: 30%;
+        max-height: 200px;
+        width: 100%;
+    }
+}

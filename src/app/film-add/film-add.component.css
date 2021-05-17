@@ -1,0 +1,7 @@
+.btn:hover{
+    box-shadow: 5px 5px 7px 5px rgb(165, 165, 165);
+}
+
+.container{
+    background-color: aliceblue;
+}

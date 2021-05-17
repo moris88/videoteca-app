@@ -1,0 +1,107 @@
+.btn:hover{
+    box-shadow: 5px 5px 7px 5px rgb(165, 165, 165);
+}
+
+.film_image {
+    width: 25rem;
+}
+
+#lettoreVideo{
+    width: 600px;
+    height: 400px;
+    max-width: 600px;
+    max-height: 400px;
+}
+
+@media only screen and (max-width: 768px) {
+    #lettoreVideo{
+        width: 300px;
+        height: 200px;
+        max-width: 300px;
+        max-height: 200px;
+    }  
+}
+
+.container{
+    background-color: aliceblue;
+}
+
+.popup-button {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 1em;
+    text-transform: uppercase;
+    color: #fff;
+    border-radius: 15px;
+    margin: 10px;
+    padding: 1em 3em;
+    background-size: 300% 300%;
+    color: white;
+    background-image: linear-gradient(to right, #2c1daf 0%, #11064e 50%, #2c1daf 100%);
+    transition: 0.5s;
+}
+  
+.popup-button:hover {
+    box-shadow: 5px 5px 7px 5px rgb(165, 165, 165);
+    background-position: right center;
+}
+
+.popup-rettangle{
+    transform: skew(-10deg);
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: grey;
+}
+
+.text-login{
+    display: block;
+    text-decoration: none;
+    color:black;
+    padding-top: 25px;
+    cursor: pointer;
+}
+
+.text-login:hover{
+    text-decoration: dashed;
+}
+
+.text-login:hover::after{
+    content: "<<";
+}
+
+.text-login:hover::before{
+    content: ">>";
+}
+
+@media only screen and (max-width: 575px) {
+
+    .film_image {
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 100%;
+    }
+
+    #lettoreVideo{
+        width: 250px;
+        height: 150px;
+        max-width: 250px;
+        max-height: 150px;
+    }
+    
+    .text-login{
+        font-size: small;
+    }
+
+    .popup-button{
+        font-size: small;
+        padding: 10%;
+    }
+
+    .popup-rettangle{
+        transform: skew(0deg);
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}

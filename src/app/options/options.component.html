@@ -1,0 +1,270 @@
+<div class="row mb-3">
+    <h1 class="text-center">Opzioni</h1>
+</div>
+<div class="container opzioni">
+  <h3 class="pt-3 pb-3">Info Personali</h3>
+
+  <div class="row rettangolo border rounded shadow pt-3 mb-5">
+
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-md-5">
+        <span class="input-group-text text-wrap">Email: </span>
+      </div>
+      <div class="col-md-5">
+        <span class="input-group-text text-wrap">{{ current.email }}</span>
+      </div>
+      <div class="col-md-1">
+        <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateEmailAccount" value="Cambia">
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-md-5">
+        <span class="input-group-text text-wrap">Nickname: </span>
+      </div>
+      <div class="col-md-5">
+        <span class="input-group-text text-wrap">{{ current.nickname }}</span>
+      </div>
+      <div class="col-md-1">
+        <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateNicknameAccount" value="Cambia">
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-md-5">
+        <span class="input-group-text text-wrap">Cambiare Password? </span>
+      </div>
+      <div class="col-md-5">
+        <input type="password" class="form-control" disabled value="password">
+      </div>
+      <div class="col-md-1">
+        <input type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updatePasswordAccount" value="Cambia">
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-md-10">
+        <span class="input-group-text text-wrap">Vuoi eliminare il tuo account? </span>
+      </div>
+      <div class="col-md-1">
+        <input type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMyAccount" value="Elimina">
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-md-11">
+        <p> <i>Creazione Account: {{ current.data_insert }}</i> </p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="pt-3 pb-3" *ngIf="isAdmin()">Opzioni Admin</h3>
+
+  <div class="row rettangolo border rounded shadow pt-3 mb-5" *ngIf="isAdmin()">
+
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-md-10">
+        <span class="input-group-text text-wrap">Vuoi eliminare tutti i film? </span>
+      </div>
+      <div class="col-md-1">
+        <input type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAllFilms" value="Elimina">
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-md-10">
+        <span class="input-group-text text-wrap">Vuoi eliminare tutti gli account user? </span>
+      </div>
+      <div class="col-md-1">
+        <input type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAllAccount" value="Elimina">
+      </div>
+    </div>
+
+    <div class="row justify-content-center mt-2 mb-2">
+      <div class="col-md-11">
+        <p> <i>Qui altre impostazioni</i> </p>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="pt-3 pb-3" *ngIf="isAdmin() && !isEmpty()">Elenco Utenti</h3>
+
+  <div class="row rettangolo table-responsive border rounded shadow pt-3 mb-5" *ngIf="isAdmin() && !isEmpty()">
+    <table class="table table-sm table-hover">
+      <thead>
+          <tr>
+              <th scope="col">Email</th>
+              <th class="col-hidden" scope="col">Data Creazione</th>
+              <th scope="col">Tipo Account</th>
+              <th scope="col">Elimina</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let utente of utenti">
+              <!-- lista degli utenti -->
+              <th scope="row" *ngIf="current.id !== utente.id"> {{ utente.email }} </th>
+              <th class="col-hidden" scope="row" *ngIf="current.id !== utente.id"> {{ utente.data_insert }} </th>
+              <th scope="row" *ngIf="current.id !== utente.id"> 
+                <button class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#updateAccountType" (click)="setModifyUtente(utente)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                  </svg>
+                </button>
+              </th>
+              <th scope="row" *ngIf="current.id !== utente.id"> 
+                <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteOneAccount" (click)="setRemoveUtente(utente)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
+                    <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+                  </svg> 
+                </button>
+              </th>
+          </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MODAL DIV -->
+<div class="modal fade" id="deleteMyAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel5" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel5">ELIMINAZIONE</h5>
+      </div>
+      <div class="modal-body">
+          "Sei sicuro di eliminare il tuo account? Questa azione è <b>irreversibile</b>!"
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteMyAccount()">Elimina il mio Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteAllFilms" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel6" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel6">ELIMINAZIONE</h5>
+        </div>
+        <div class="modal-body">
+            "Sei sicuro di eliminare tutti i film? Questa azione è <b>irreversibile</b>!"
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" routerLink="/home/delete/0">Elimina tutti i film</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteAllAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel7" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel7">ELIMINAZIONE</h5>
+      </div>
+      <div class="modal-body">
+          "Sei sicuro di eliminare tutti gli account user? Questa azione è <b>irreversibile</b>!"
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" >Elimina tutti gli account user</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateEmailAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel8" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel8">AGGIORNAMENTO EMAIL</h5>
+      </div>
+      <div class="modal-body">
+        <p>Qui puoi cambiare la tua email,<br><b>attuale:</b> {{ current.email }}<br>L'email deve essere di questo tipo es. nome@dominio.com</p>
+        <input type="email" name="email" id="email" class="input-group-text w-100 mt-3" [(ngModel)]="email">
+      </div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-warning" data-bs-dismiss="modal" value="Annulla">
+        <input type="button" class="btn btn-success" data-bs-dismiss="modal" value="Conferma" (click)="changeMyEmail()">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateNicknameAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel9" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel9">AGGIORNAMENTO NICKNAME</h5>
+      </div>
+      <div class="modal-body">
+        <p>Qui puoi cambiare la tua email,<br><b>attuale:</b> {{ current.nickname }}<br>Il nickname deve essere composto da caratteri minuscoli e/o numeri</p>
+        <input type="nickname" name="nickname" id="nickname" class="input-group-text w-100 mt-3" [(ngModel)]="nickname">
+      </div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-warning" data-bs-dismiss="modal" value="Annulla">
+        <input type="button" class="btn btn-success" data-bs-dismiss="modal" value="Conferma" (click)="changeMyNickname()">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updatePasswordAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel10" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel10">AGGIORNAMENTO PASSWORD</h5>
+      </div>
+      <div class="modal-body">
+        <p>Qui puoi cambiare la tua password. La password deve essere massimo di 14 caratteri e minimo 6, composta da caratteri minuscoli, maiuscoli numeri e caratteri speciali del tipo: ?!@#$%^&*_-</p>
+        <input type="password" name="pwd" id="pwd" class="input-group-text w-100 mt-3" [(ngModel)]="pwd">
+      </div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-warning" data-bs-dismiss="modal" value="Annulla">
+        <input type="button" class="btn btn-success" data-bs-dismiss="modal" value="Conferma" (click)="changeMyPassword()">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="updateAccountType" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel11" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel11">AGGIORNAMENTO ACCOUNT</h5>
+      </div>
+      <div class="modal-body">
+        <p>Qui puoi cambiare il tipo di account di {{ modifyUtente.nickname }}</p>
+        <select class="form-select" aria-label="Default select example" [(ngModel)]="account">
+          <option value="" selected>Scegli account</option>
+          <option value="1">Admin</option>
+          <option value="2">User</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <input type="button" class="btn btn-warning" data-bs-dismiss="modal" value="Annulla">
+        <input *ngIf="account !== ''" type="button" class="btn btn-success" data-bs-dismiss="modal" value="Conferma" (click)="changeAccount(modifyUtente,account)">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteOneAccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel12" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel12">ELIMINAZIONE</h5>
+      </div>
+      <div class="modal-body">
+          "Sei sicuro di eliminare l'account <b>{{ removeUtente.nickname }}</b>? Questa azione è <b>irreversibile</b>!"
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteAccount(removeUtente.id)">Elimina {{ removeUtente.nickname }}</button>
+      </div>
+    </div>
+  </div>
+</div>

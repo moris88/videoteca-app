@@ -1,0 +1,19 @@
+#chat{
+    background-color: aliceblue;
+}
+
+#messaggio, #utente{
+    font-size: large;
+}
+
+@media only screen and (max-width: 768px) {
+    #messaggio, #utente{
+        font-size: medium;
+    }
+}
+
+@media only screen and (max-width: 425px) {
+    #messaggio, #utente{
+        font-size: smaller;
+    }
+}

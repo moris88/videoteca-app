@@ -1,0 +1,125 @@
+<div class="container border rounded shadow mb-5">
+  <div class="card mt-3 mb-3">
+    <h3 class="card-header text-center"> <b>{{ film.titolo | uppercase}}</b></h3>
+    <div class="row justify-content-center mt-2">
+      <div class="col-sm-auto" *ngIf="film.locandina !== ''">
+        <img src="./assets/image/{{ film.locandina }}" class="card-img-top film_image" alt="{{ film.locandina }}">
+      </div>
+      <div class="col-sm-auto" *ngIf="film.locandina === ''">
+        <img src="./assets/image/locandina.jpg" class="card-img-top film_image" alt="locandina example">
+      </div>
+    </div>
+    <hr>
+    <div class="card-body">
+      <p class="card-text"><b>Genere:</b> {{ tipo }}</p>
+      <p class="card-text" *ngIf="film.anno === '0000'"><b>Anno: </b> <span class="badge bg-warning text-dark">Non Disponibile</span></p>
+      <p class="card-text" *ngIf="film.anno !== '0000'"><b>Anno: </b> {{ film.anno }}</p>
+      <p class="card-text" *ngIf="film.durata === '0'"><b>Durata: </b> <span class="badge bg-warning text-dark">Non Disponibile</span></p>
+      <p class="card-text" *ngIf="film.durata !== '0'"><b>Durata: </b> {{ film.durata }} min</p>
+      <p class="card-text" *ngIf="film.valutazione==0"><b>Valutazione:</b><span class="badge bg-warning text-dark">Non Disponibile</span></p>
+      <p class="card-text" *ngIf="film.valutazione==1"><b>Valutazione:</b> &hearts; </p>
+      <p class="card-text" *ngIf="film.valutazione==2"><b>Valutazione:</b> &hearts;&hearts; </p>
+      <p class="card-text" *ngIf="film.valutazione==3"><b>Valutazione:</b> &hearts;&hearts;&hearts; </p>
+      <p class="card-text" *ngIf="film.valutazione==4"><b>Valutazione:</b> &hearts;&hearts;&hearts;&hearts; </p>
+      <p class="card-text" *ngIf="film.valutazione==5"><b>Valutazione:</b> &hearts;&hearts;&hearts;&hearts;&hearts; </p>
+      <p class="card-text"><b>Trama:</b></p>
+      <hr>
+      <p class="card-text" *ngIf="film.trama === ''"><span class="badge bg-warning text-dark">Non Disponibile</span></p>
+      <p class="card-text" *ngIf="film.trama !== ''">{{ film.trama }}</p>
+      <hr>
+      <div class="row justify-content-center" *ngIf="film.posizione !== '' && isLogin() === true">
+        <div class="col-auto">
+          <video id="lettoreVideo" controls preload="auto" poster="./assets/image/poster.jpg">
+              <source src="./assets/film/{{ film.posizione }}"/>
+          </video>
+        </div>
+      </div>
+      <div class="row justify-content-center popup-rettangle border rounded shadow" *ngIf="isLogin() === false">
+        <div class="col-auto">
+            <a class="text-center fw-bold text-login" routerLink="/home/login">Effettua il login!</a>
+            <button class="popup-button" routerLink="/home/login">Login</button>
+        </div>
+      </div>
+      <div class="row justify-content-center" *ngIf="film.posizione === '' && isLogin() === true">
+        <div class="col-auto mt-2" *ngIf="film.posizione === ''">
+          <p> Film: <span class="badge bg-warning text-dark">Non Disponibile</span></p>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-auto mt-2" *ngIf="film.trailer !== ''">
+          <a class="btn btn-primary" href="{{ film.trailer }}" target="_blank">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+              <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+            </svg>
+            Guarda il trailer
+          </a>
+        </div>
+        <div class="col-auto mt-2" *ngIf="film.trailer === ''">
+          <p> Trailer: <span class="badge bg-warning text-dark">Non Disponibile</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center mt-2 mb-3" *ngIf="isLogin() === true && isAdmin() === true">
+    <p class="text-center"><b>PANNELLO ADMIN</b></p>
+    <div class="col-md-auto">
+        <button class="btn btn-warning w-100 mt-1" routerLink="/home/edit/{{ film.id }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+          </svg>
+          Modifica Film
+        </button>
+    </div>
+    <div class="col-md-auto">
+      <button class="btn btn-danger w-100 mt-1" data-bs-toggle="modal" data-bs-target="#deleteFilm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eraser" viewBox="0 0 16 16">
+              <path d="M8.086 2.207a2 2 0 0 1 2.828 0l3.879 3.879a2 2 0 0 1 0 2.828l-5.5 5.5A2 2 0 0 1 7.879 15H5.12a2 2 0 0 1-1.414-.586l-2.5-2.5a2 2 0 0 1 0-2.828l6.879-6.879zm2.121.707a1 1 0 0 0-1.414 0L4.16 7.547l5.293 5.293 4.633-4.633a1 1 0 0 0 0-1.414l-3.879-3.879zM8.746 13.547L3.453 8.254 1.914 9.793a1 1 0 0 0 0 1.414l2.5 2.5a1 1 0 0 0 .707.293H7.88a1 1 0 0 0 .707-.293l.16-.16z"/>
+          </svg>   
+          Elimina Film          
+      </button>
+    </div>
+    <div class="col-md-auto" *ngIf="film.locandina != ''">
+      <button class="btn btn-secondary w-100 mt-1" data-bs-toggle="modal" data-bs-target="#deleteLocandina">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+          <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+          <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+        </svg>
+        Elimina Locandina
+      </button>
+    </div>
+  </div>
+  
+  <!-- Modal Confirm -->
+  <div class="modal fade" id="deleteFilm" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel2" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel2">ELIMINAZIONE</h5>
+        </div>
+        <div class="modal-body">
+            "Sei sicuro di eliminare il film&nbsp;&nbsp;{{ film.titolo }}?"
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" routerLink="/home/delete/{{ film.id }}">Elimina </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="deleteLocandina" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel3" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel3">ELIMINAZIONE LOCANDINA</h5>
+        </div>
+        <div class="modal-body">
+            "Sei sicuro di eliminare la locandina {{ film.locandina }} del film {{ film.titolo }}?"
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteLocandina()">Elimina</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
