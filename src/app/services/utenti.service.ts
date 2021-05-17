@@ -14,6 +14,10 @@ export class UtentiService {
     private httpClient: HttpClient
   ) {}
 
+  sendFilmUtente(): any{
+    return this.httpClient.post(IP_WEB_SERVER + URL_UTENTI + '/action=email', null);
+  }
+  
   deleteUtente(id: string): any{
     return this.httpClient.delete(IP_WEB_SERVER + URL_UTENTI + '/action=' + id);
   }

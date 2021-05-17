@@ -44,6 +44,18 @@ export class OptionsComponent implements OnInit {
     );
   }
 
+  sendEmail(): void{
+    this.utentiService.sendFilmUtente().subscribe(
+      (response: any) => {
+        console.log(response);
+        window.alert(response.message);
+      },
+      (error: any) => {
+        console.log(error);
+      }
+    );
+  }
+
   isEmpty(): boolean{
     if ((this.utenti.length - 1) > 0){
       return false;
