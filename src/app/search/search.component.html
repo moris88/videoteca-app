@@ -13,9 +13,8 @@
 
             <input *ngIf="chooseSearch() === 2" type="number" [(ngModel)]="wordSearch" class="form-control" placeholder="Che anno vuoi carcare?" aria-label="search" aria-describedby="search" step="1">
 
-            <label *ngIf="chooseSearch() === 3" for="valutazione" class="input-group-text">Che valutazione vuoi cercare?</label>
             <select *ngIf="chooseSearch() === 3" [(ngModel)]="wordSearch" class="form-control" name="valutazione" id="valutazione">
-                <option value="0">--Valutazione--</option>
+                <option value="0">Che valutazione vuoi cercare?</option>
                 <option value="1">&hearts;</option>
                 <option value="2">&hearts;&hearts;</option>
                 <option value="3">&hearts;&hearts;&hearts;</option>
@@ -23,9 +22,8 @@
                 <option value="5">&hearts;&hearts;&hearts;&hearts;&hearts;</option>
             </select>
 
-            <label *ngIf="chooseSearch() === 4" for="genere" class="input-group-text">Che genere vuoi cercare?</label>
             <select *ngIf="chooseSearch() === 4" [(ngModel)]="wordSearch" class="form-control" name="genere" id="genere">
-                <option value="0">--Genere--</option>
+                <option value="0">Che genere vuoi cercare?</option>
                 <option *ngFor="let genere of generi" value="{{ genere.id }}">{{ genere.tipo }}</option>
             </select>
 
