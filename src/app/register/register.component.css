@@ -16,3 +16,10 @@
         margin-right: 0 !important;
     }
 }
+
+@media only screen and (max-width: 400px) {
+    #error-alert{
+        display: block !important;
+    }
+}
+

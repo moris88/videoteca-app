@@ -101,13 +101,13 @@ export class OptionsComponent implements OnInit {
         );
       }
     }else{
-      window.alert('Nickname non corretto!');
+      window.alert('Nickname non corretto! Sono consentiti solo caratteri minuscoli e numeri');
     }
     this.nickname = '';
   }
 
   changeMyPassword(): void{
-    if(this.isValidPwd() === true){
+    if (this.isValidPwd() === true){
       if (window.confirm('Confermi? ' + this.pwd)){
         this.authService.utente.pwd = this.pwd;
         this.utentiService.updateUtente(this.authService.utente).subscribe(
@@ -126,11 +126,11 @@ export class OptionsComponent implements OnInit {
   }
 
   setModifyUtente(utente: Utente): void{
-    this.modifyUtente = Object.assign( {} ,utente);
+    this.modifyUtente = Object.assign( {}, utente);
   }
 
   setRemoveUtente(utente: Utente): void{
-    this.removeUtente = Object.assign( {} ,utente);
+    this.removeUtente = Object.assign( {}, utente);
   }
 
   deleteMyAccount(): void{
