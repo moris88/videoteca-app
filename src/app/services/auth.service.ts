@@ -43,7 +43,7 @@ export class AuthService {
 
   getToken(): void {
     this.utente.email = this.token.loadEmail();
-    this.utente.pwd = this.token.loadEmail();
+    this.utente.pwd = this.token.loadPwd();
   }
 
   abilitaAdmin(): void{
