@@ -27,6 +27,7 @@
                 <option *ngFor="let genere of generi" value="{{ genere.id }}">{{ genere.tipo }}</option>
             </select>
 
+            <button type="button" class="btn btn-outline-secondary" (click)="resetSearch()">Reset</button>
             <button type="submit" class="btn btn-outline-primary" (click)="sendSearch()">Cerca</button>
         </div>
         <div class="col-md-auto form-check">
@@ -76,7 +77,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let film of filmsSearch" (click)="openURL(film.id)">
+                <tr *ngFor="let film of filmsSearch | paginate: config" (click)="openURL(film.id)">
                     <!-- lista dei film -->
                     <th scope="row"> {{ film.id }} </th>
                     <th scope="row" colspan="2"> <span class="align-self-center">{{ film.titolo }}</span> </th>
@@ -92,6 +93,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="row justify-content-center" *ngIf="isEmpty() === false">
+            <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+        </div>
     </div>
     <div class="row" *ngIf="filmsSearch.length === 0">
         <p class="text-center pt-3 pb-3">Nessun Film Trovato!</p>

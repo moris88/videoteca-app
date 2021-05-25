@@ -21,14 +21,14 @@ export class FilmsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.config = {
-      itemsPerPage: 20,
-      currentPage: 1,
-      totalItems: this.films.length
-    };
     this.vService.getFilms().subscribe(
       (response: any) => {
         this.films = response.records;
+        this.config = {
+          itemsPerPage: 20,
+          currentPage: 1,
+          totalItems: this.films.length
+        };
       }
     );
   }

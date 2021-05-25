@@ -36,8 +36,8 @@ export class LoginComponent implements OnInit {
 
   accedi(): void{
     this.errorLogin = false;
-    this.authService.login(this.email, this.pwd);
     this.loading = true;
+    this.authService.login(this.email, this.pwd);
     setTimeout(() => {
       if (this.authService.isLogin()){
         this.router.navigate(['/home']);
@@ -45,6 +45,6 @@ export class LoginComponent implements OnInit {
         this.loading = false;
         this.errorLogin = true;
       }
-    },3000);
+    }, 3000);
   }
 }

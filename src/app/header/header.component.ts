@@ -1,7 +1,6 @@
 import { Attribute, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
-import { SearchService } from '../services/search.service';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +17,6 @@ export class HeaderComponent implements OnInit {
   constructor(
     @Attribute('title') title: string,
     private router: Router,
-    private vSearch: SearchService,
     private authService: AuthService,
     ) {
     this._title = title;
@@ -49,8 +47,8 @@ export class HeaderComponent implements OnInit {
 
   cerca(): void{
     if (this.searchTitle !== ''){
-      this.vSearch.write(this.searchTitle);
       this.router.navigate(['/home/search/' + this.searchTitle]);
+      this.searchTitle = '';
     }else{
       window.alert('Inserisci un titolo per la ricerca!');
     }
@@ -61,6 +59,6 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       this.authService.logout();
       this.loading = false;
-    },3000);
+    }, 3000);
   }
 }

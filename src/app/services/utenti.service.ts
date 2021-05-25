@@ -17,7 +17,6 @@ export class UtentiService {
   sendFilmUtente(): any{
     return this.httpClient.post(IP_WEB_SERVER + URL_UTENTI + '/action=email', null);
   }
-  
   deleteUtente(id: string): any{
     return this.httpClient.delete(IP_WEB_SERVER + URL_UTENTI + '/action=' + id);
   }
@@ -26,7 +25,6 @@ export class UtentiService {
   }
   updateUtente(utente: Utente): any{
     const temp = JSON.stringify(utente);
-    console.log(temp);
     return this.httpClient.put(IP_WEB_SERVER + URL_UTENTI + '/action=update', temp);
   }
   registerUtente(utente: Utente): any{
