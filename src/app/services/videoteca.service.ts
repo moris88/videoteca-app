@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Film } from '../classes/film';
 
-const IP_WEB_SERVER = 'http://192.168.1.184';
+const IP_WEB_SERVER = 'http://192.168.1.208';
 const URL_FILM = '/web-server/api/videoteca';
 const URL_GENRE = '/web-server/api/videoteca/genere/';
 

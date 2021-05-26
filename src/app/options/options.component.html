@@ -84,8 +84,13 @@
       <div class="col-md-10">
         <span class="input-group-text text-wrap">Vuoi inviare a tutti gli account le novità? </span>
       </div>
-      <div class="col-md-1">
+      <div class="col-md-1" *ngIf="!loading">
         <input type="button" class="btn btn-success" value="Invia" (click)="sendEmail()">
+      </div>
+      <div class="col-md-1" *ngIf="loading">
+        <div class="space-left spinner-border text-danger" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
       </div>
     </div>
 

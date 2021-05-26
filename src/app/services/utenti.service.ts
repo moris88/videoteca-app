@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Utente } from '../classes/utente';
 
-const IP_WEB_SERVER = 'http://192.168.1.184';
+const IP_WEB_SERVER = 'http://192.168.1.208';
 const URL_UTENTI = '/web-server/api/videoteca/utenti';
 
 @Injectable({

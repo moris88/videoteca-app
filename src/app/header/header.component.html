@@ -54,7 +54,7 @@
               </a>
             </li>
             <li class="nav-item" *ngIf="!isLogin() && !loading">
-              <button class="nav-link btn btn-primary space-left" routerLink="/home/login">
+              <button class="nav-link btn btn-warning space-left" style="color: black;" routerLink="/home/login">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
                   <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
                   <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
@@ -63,7 +63,7 @@
               </button>
             </li>
             <li class="nav-item" *ngIf="isLogin() && !loading">
-              <button class="nav-link btn btn-primary space-left"  data-bs-toggle="modal" data-bs-target="#logout">
+              <button class="nav-link btn btn-danger space-left"  data-bs-toggle="modal" data-bs-target="#logout">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
                   <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
                   <path d="M9 9a1 1 0 1 0 2 0 1 1 0 0 0-2 0z"/>
@@ -71,11 +71,6 @@
                 Logout
               </button>
             </li>
-            <div id="title-user-inline" *ngIf="isLogin() && !loading">
-              <a class="space-left text-white btn btn-outline-secondary disabled"> 
-                Ciao {{ loadName() }}
-              </a>
-            </div>
             <li>
               <div *ngIf="loading" class="space-left spinner-border text-danger" role="status">
                 <span class="visually-hidden">Loading...</span>
@@ -89,7 +84,7 @@
           </div>
           <div class="d-flex">
             <input class="form-control me-2" [(ngModel)]="searchTitle" type="search" placeholder="Cerca per Titolo" aria-label="Search">
-            <button class="btn btn-outline-danger" type="button" (click)="cerca()">Cerca</button>
+            <button class="btn btn-primary" type="button" (click)="cerca()">Cerca</button>
           </div>
         </div>
       </div>
@@ -105,7 +100,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-            <button *ngIf="!loading" type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="logout()">Logout</button>
+            <button *ngIf="!loading" type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="logout()">Logout</button>
           </div>
         </div>
       </div>

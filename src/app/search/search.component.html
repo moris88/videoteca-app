@@ -27,37 +27,43 @@
                 <option *ngFor="let genere of generi" value="{{ genere.id }}">{{ genere.tipo }}</option>
             </select>
 
-            <button type="button" class="btn btn-outline-secondary" (click)="resetSearch()">Reset</button>
-            <button type="submit" class="btn btn-outline-primary" (click)="sendSearch()">Cerca</button>
         </div>
-        <div class="col-md-auto form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked (click)="changeSearch(1)">
-            <label class="form-check-label" for="flexRadioDefault1">
-            Cerca per titolo
-            </label>
-        </div>
-        <div class="col-md-auto form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" (click)="changeSearch(2)">
-            <label class="form-check-label" for="flexRadioDefault2">
-            Cerca per anno
-            </label>
-        </div>
-        <div class="col-md-auto form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" (click)="changeSearch(3)">
-            <label class="form-check-label" for="flexRadioDefault3">
-            Cerca per valutazione
-            </label>
-        </div>
-        <div class="col-md-auto form-check">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" (click)="changeSearch(4)">
-            <label class="form-check-label" for="flexRadioDefault4">
-            Cerca per genere
-            </label>
+        <div class="row justify-content-center">
+            <div class="col-md-auto form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked (click)="changeSearch(1)">
+                <label class="form-check-label" for="flexRadioDefault1">
+                Cerca per titolo
+                </label>
+            </div>
+            <div class="col-md-auto form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" (click)="changeSearch(2)">
+                <label class="form-check-label" for="flexRadioDefault2">
+                Cerca per anno
+                </label>
+            </div>
+            <div class="col-md-auto form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" (click)="changeSearch(3)">
+                <label class="form-check-label" for="flexRadioDefault3">
+                Cerca per valutazione
+                </label>
+            </div>
+            <div class="col-md-auto form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault4" (click)="changeSearch(4)">
+                <label class="form-check-label" for="flexRadioDefault4">
+                Cerca per genere
+                </label>
+            </div>
         </div>
     </div>
     <div class="row justify-content-center mt-3">
         <div class="col-md-auto">
-            <a class="btn btn-primary" routerLink="/home/films">vai alla lista film</a>
+            <button type="submit" class="btn btn-primary w-100 mt-1" (click)="sendSearch()">Cerca</button>
+        </div>
+        <div class="col-md-auto">
+            <button type="button" class="btn btn-outline-primary w-100 mt-1" (click)="resetSearch()">Reset</button>
+        </div>
+        <div class="col-md-auto">
+            <a class="btn btn-outline-primary w-100 mt-1" routerLink="/home/films">Lista film</a>
         </div>
     </div>
 </div>

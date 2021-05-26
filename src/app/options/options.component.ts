@@ -15,6 +15,7 @@ export class OptionsComponent implements OnInit {
   modifyUtente = new Utente();
   removeUtente = new Utente();
   account = '';
+  loading = false;
 
   email = '';
   nickname = '';
@@ -45,10 +46,12 @@ export class OptionsComponent implements OnInit {
   }
 
   sendEmail(): void{
+    this.loading = true;
     this.utentiService.sendFilmUtente().subscribe(
       (response: any) => {
         console.log(response);
         window.alert(response.message);
+        this.loading = false;
       },
       (error: any) => {
         console.log(error);

@@ -2,7 +2,8 @@ import { Commento } from './../classes/commento';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-const URL = 'http://192.168.1.184/web-server/api/videoteca/commenti';
+const IP_WEB_SERVER = 'http://192.168.1.208';
+const URL_COMMENTI = '/web-server/api/videoteca/commenti';
 
 @Injectable({
   providedIn: 'root'
@@ -38,11 +39,11 @@ export class CommentiService {
   }
 
   private getCommenti(): any{
-    return this.http.get(URL);
+    return this.http.get(IP_WEB_SERVER + URL_COMMENTI);
   }
 
   private setCommento(commento: Commento): any{
     const temp = JSON.stringify(commento);
-    return this.http.post(URL, temp);
+    return this.http.post(IP_WEB_SERVER + URL_COMMENTI, temp);
   }
 }
