@@ -31,7 +31,7 @@
 
       <div class="row justify-content-around">
         <!-- FILM -->
-        <div class="col-auto" *ngIf="film.posizione !== '' && isLogin() === true">
+        <div class="col-auto" *ngIf="film.posizione !== ''">
           <!-- <video id="lettoreVideo" controls preload="auto" poster="./assets/image/poster.jpg">
               <source src="./assets/film/{{ film.posizione }}"/>
           </video> -->
@@ -42,7 +42,7 @@
             Guarda il film
           </a>
         </div>
-        <div class="col-auto" *ngIf="film.posizione === '' && isLogin() === true">
+        <div class="col-auto" *ngIf="film.posizione === ''">
           <p><span class="badge bg-warning text-dark mt-1">Film Attualmente Non Disponibile</span></p>
         </div>
         <!-- TRAILER -->
@@ -60,10 +60,10 @@
       </div>
 
       <!-- NON EFFETTUATO L'ACCESSO -->
-      <div class="row justify-content-center popup-rettangle border rounded shadow mt-3" *ngIf="isLogin() === false">
+      <div class="row justify-content-center popup-rettangle border rounded shadow mt-3" *ngIf="!isAdmin() && isLogin()">
         <div class="col-auto">
-            <a class="text-center fw-bold text-login" routerLink="/home/login">Effettua il login!</a>
-            <button class="popup-button" routerLink="/home/login">Login</button>
+            <a class="text-center fw-bold text-login" (click)="logout()">Effettua il login di Admin per modificare il film!</a>
+            <button class="popup-button" (click)="logout()">Login</button>
         </div>
       </div>
 

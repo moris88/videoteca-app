@@ -53,7 +53,7 @@
                 Opzioni
               </a>
             </li>
-            <li class="nav-item" *ngIf="!isLogin() && !loading">
+            <li class="nav-item" *ngIf="!isLogin()">
               <button class="nav-link btn btn-warning space-left" style="color: black;" routerLink="/home/login">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-open" viewBox="0 0 16 16">
                   <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
@@ -62,7 +62,7 @@
                 Login
               </button>
             </li>
-            <li class="nav-item" *ngIf="isLogin() && !loading">
+            <li class="nav-item" *ngIf="isLogin()">
               <button class="nav-link btn btn-danger space-left"  data-bs-toggle="modal" data-bs-target="#logout">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-door-closed" viewBox="0 0 16 16">
                   <path d="M3 2a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2zm1 13h8V2H4v13z"/>
@@ -71,13 +71,8 @@
                 Logout
               </button>
             </li>
-            <li>
-              <div *ngIf="loading" class="space-left spinner-border text-danger" role="status">
-                <span class="visually-hidden">Loading...</span>
-              </div>
-            </li>
           </ul>
-          <div id="title-user" *ngIf="isLogin() && !loading">
+          <div id="title-user" *ngIf="isLogin()">
             <a class="space-left text-white btn btn-outline-secondary disabled"> 
               Ciao {{ loadName() }}
             </a>
@@ -89,6 +84,7 @@
         </div>
       </div>
     </nav>
+    <!-- MODAL ALERT -->
     <div class="modal fade" id="logout" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel6" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -100,7 +96,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
-            <button *ngIf="!loading" type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="logout()">Logout</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="logout()">Logout</button>
           </div>
         </div>
       </div>

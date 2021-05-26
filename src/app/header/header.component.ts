@@ -12,7 +12,6 @@ export class HeaderComponent implements OnInit {
   // tslint:disable-next-line: variable-name
   private _title: string;
   searchTitle = '';
-  loading = false;
 
   constructor(
     @Attribute('title') title: string,
@@ -40,9 +39,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.checkSession();
-    if (this.authService.isLogin()){
-      this.loading = false;
-    }
   }
 
   cerca(): void{
@@ -55,10 +51,6 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(): void{
-    this.loading = true;
-    setTimeout(() => {
-      this.authService.logout();
-      this.loading = false;
-    }, 3000);
+    this.authService.logout();
   }
 }

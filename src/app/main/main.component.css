@@ -108,7 +108,6 @@
 
     .popup-button{
         font-size: small !important;
-        padding: 10% !important;
     }
 
     .popup-rettangle{
@@ -136,7 +135,7 @@
     text-transform: uppercase;
     color: #fff;
     border-radius: 15px;
-    margin: 10px;
+    margin: 10px auto;
     padding: 1em 3em;
     background-size: 300% 300%;
     color: white;

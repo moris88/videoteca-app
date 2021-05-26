@@ -1,5 +1,5 @@
 import { Component, OnInit, } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Film } from '../classes/film';
 import { Genere } from '../classes/genere';
 import { AuthService } from '../services/auth.service';
@@ -19,7 +19,8 @@ export class FilmDetailComponent implements OnInit {
   constructor(
     private vService: VideotecaService,
     private route: ActivatedRoute,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -59,5 +60,10 @@ export class FilmDetailComponent implements OnInit {
 
   isAdmin(): boolean{
     return this.authService.isAdmin();
+  }
+
+  logout(): void{
+    this.authService.logout();
+    this.router.navigate(['/home/login']);
   }
 }
