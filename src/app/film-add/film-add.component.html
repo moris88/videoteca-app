@@ -2,11 +2,14 @@
     <h1 class="text-center">Inserisci Film</h1>
 </div>
 <div class="container border rounded shadow">
+    <!-- ERROR DIV -->
     <div *ngIf="errors.length > 0" class="row justify-content-center alert alert-danger mt-3" role="alert">
         <ul *ngFor="let error of errors">
             <li>{{ error }}</li>
         </ul>
     </div>
+
+    <!-- INPUT INSERIMENTO CAMPI -->
     <div class="row justify-content-between mt-3">
         <div class="col-md-6 mt-1">
             <input [(ngModel)]="film.titolo" id="titolo" name="titolo" type="text" class="form-control" placeholder="Inserisci Titolo" >
@@ -38,32 +41,39 @@
     </div>
     <div class="row justify-content-between">
         <div class="col-md-12 mt-2">
-            <label for="trama">Trama</label>
+            <label for="trama"><b>Trama</b></label>
             <textarea [(ngModel)]="film.trama" class="form-control" name="trama" id="trama" cols="30" rows="10"></textarea>
         </div>
     </div>
     <div class="row justify-content-between mt-3">
         <div class="col-md-6 mt-1">
-            <input [(ngModel)]="film.trailer" id="trailer" name="trailer" type="text" class="form-control" placeholder="Inserisci link Trailer">
+            <input [(ngModel)]="film.trailer" id="trailer" name="trailer" type="text" class="form-control" placeholder="Inserisci link del trailer da youtube">
         </div>
         <div class="col-md-6 mt-1">
-            <input [(ngModel)]="film.posizione" id="posizione" name="posizione" type="text" class="form-control" placeholder="Inserisci Posizione">
+            <input [(ngModel)]="film.posizione" id="posizione" name="posizione" type="text" class="form-control" placeholder="Inserisci nome del file con estensione .mp4">
         </div>
     </div> 
+
+    <!-- UPLOAD FILE IMMAGINE -->
     <div class="row justify-content-center mt-3">
-        <div class="col-lg-auto mt-1">
-            <input type="file" #file class="form-control" id="file" name="file">
+        <div class="row justify-content-center mt-2 mb-2">
+            <div class="col-lg-auto mt-1"><label for="file"><b>Upload Immagine Locandina formato .jpg</b></label></div>
         </div>
         <div class="col-lg-auto mt-1">
-            <button class="btn btn-secondary" (file)="''" (click)="deleteData()">
+            <input type="file" #fileLocandina class="form-control" id="file" name="file">
+        </div>
+        <div class="col-lg-auto mt-1">
+            <button class="btn btn-secondary" (fileLocandina)="''" (click)="deleteDataLocandina()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
                     <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                 </svg>
-                Cancella File
+                Cancella Locandina
             </button>
         </div>
     </div>
+
+    <!-- BUTTON GROUP SALVATAGGIO -->
     <div class="row justify-content-center mb-3 mt-3">
         <div class="col-lg-2">
             <button type="submit" class="btn btn-success w-100 mt-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -83,7 +93,8 @@
             </button>
         </div>
     </div>
-    <!-- Modal Confirm -->
+
+    <!-- POPUP DI CONFERMA -->
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
@@ -96,7 +107,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">NO</button>
-                <button type="submit" class="btn btn-success mx-1" data-bs-dismiss="modal" (click)="save(file)">SI</button>
+                <button type="submit" class="btn btn-success mx-1" data-bs-dismiss="modal" (click)="save(fileLocandina)">SI</button>
             </div>
         </div>
         </div>

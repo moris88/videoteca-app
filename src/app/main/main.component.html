@@ -48,7 +48,7 @@
             <div *ngFor="let film of films" class="col-md-4 film_card mt-3">
                 <div class="card shadow ultimi_inseriti">
                     <div class="card-body">
-                        <h5 class="card-title text-center fw-bold text-truncate" data-bs-placement="top" data-bs-toggle="tooltip" title="{{ film.titolo }}">{{ film.titolo | uppercase}}</h5>
+                        <h5 class="titolo-card card-title text-center fw-bold text-truncate" data-bs-placement="top" data-bs-toggle="tooltip" title="{{ film.titolo }}">{{ film.titolo | uppercase}}</h5>
                         <hr>
                         <p class="card-text text-center fst-italic">Genere: {{ film.genere }}</p>
                         <p class="card-text text-center fst-italic">Durata: {{ film.durata }} min</p>

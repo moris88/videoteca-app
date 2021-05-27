@@ -68,6 +68,9 @@
 }
 
 @media only screen and (max-width: 1200px) {
+    .titolo-card {
+        font-size: medium !important;
+    }
     .immagine{
         padding-left: 250px;
         padding-right: 250px;
@@ -77,6 +80,10 @@
 }
 
 @media only screen and (max-width: 992px) {
+    .titolo-card {
+        font-size: 10px !important;
+    }
+
     .immagine{
         padding-left: 110px;
         padding-right: 110px;
@@ -86,6 +93,9 @@
 }
 
 @media only screen and (max-width: 768px) {
+    .titolo-card {
+        font-size: medium !important;
+    }
     .immagine{
         padding-left: 100px;
         padding-right: 100px;

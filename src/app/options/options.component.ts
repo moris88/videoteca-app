@@ -149,10 +149,10 @@ export class OptionsComponent implements OnInit {
     );
   }
 
-  changeAccount(utente: Utente, account_type: string): void{
-    utente.account_id = account_type;
+  changeAccount(utente: Utente, accountType: string): void{
+    utente.account_id = accountType;
     console.log(utente);
-    if (window.confirm('Confermi il cambio di account all\'utente '+utente.nickname+'?')){
+    if (window.confirm('Confermi il cambio di account all\'utente ' + utente.nickname + '?')){
       this.utentiService.updateUtente(utente).subscribe(
         (response: any) => {
           console.log(response);
@@ -226,7 +226,7 @@ export class OptionsComponent implements OnInit {
     return true;
   }
 
-  private isVoid(text: String): boolean{
+  private isVoid(text: string): boolean{
     if (text.length === 0 || text === null || text === undefined || text === ''){
       return true;
     }

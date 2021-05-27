@@ -14,7 +14,7 @@ export class FilmUpdateComponent implements OnInit {
   generi: Genere[] = [];
   modifyFilm: Film = new Film();
   resetFilm: Film = new Film();
-  file!: FormData;
+  fileLocandina!: FormData;
   errors: string[] = [];
   @ViewChild('file', {static: false})
   InputVar!: ElementRef;
@@ -48,19 +48,19 @@ export class FilmUpdateComponent implements OnInit {
     this.modifyFilm = Object.assign({}, this.resetFilm);
   }
 
-  prepareData(file: File): void{
-    this.file = new FormData();
-    this.file.append('file', file);
+  prepareDataLocandina(file: File): void{
+    this.fileLocandina = new FormData();
+    this.fileLocandina.append('file', file);
   }
 
-  deleteData(): void{
+  deleteDataLocandina(): void{
     this.InputVar.nativeElement.value = '';
   }
 
-  update(file: HTMLInputElement|any): void {
-    this.prepareData(file.files[0]);
-    if (file.files[0] !== undefined){
-      this.modifyFilm.locandina = file.files[0].name;
+  update(fileTempLocandina: HTMLInputElement|any): void {
+    this.prepareDataLocandina(fileTempLocandina.files[0]);
+    if (fileTempLocandina.files[0] !== undefined){
+      this.modifyFilm.locandina = fileTempLocandina.files[0].name;
     }
     this.errors = [];
     if (this.modifyFilm.titolo.length <= 0 && this.modifyFilm.titolo === ''){
@@ -73,14 +73,14 @@ export class FilmUpdateComponent implements OnInit {
       this.vService.updateFilm(this.modifyFilm).subscribe(
         (response: any) => {
           alert(response.message);
-          if (file.files[0] !== undefined){
-            this.vService.addLocandina(this.file).subscribe(
+          if (fileTempLocandina.files[0] !== undefined){
+            this.vService.addLocandina(this.fileLocandina).subscribe(
               (response2: any) => {
                 alert(response2.message);
                 this.router.navigate(['/home/films']);
               },
               (error: any) => {
-                alert(error.error.message);
+                alert('ERRORE! ' + error.error.message);
               },
             );
           }else{
@@ -88,7 +88,7 @@ export class FilmUpdateComponent implements OnInit {
           }
         },
         (error: any) => {
-          alert(error.message);
+          alert('ERRORE! ' + error.message);
         },
       );
     }

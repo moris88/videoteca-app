@@ -11,10 +11,10 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  // email = 'tolomeo.maurizio@outlook.it';
-  // pwd = '123456';
-  email = '';
-  pwd = '';
+  email = 'tolomeo.maurizio@outlook.it';
+  pwd = 'Cecilia1992@';
+  // email = '';
+  // pwd = '';
   loading = false;
   errorLogin = false;
 

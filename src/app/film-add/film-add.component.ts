@@ -13,7 +13,7 @@ export class FilmAddComponent implements OnInit {
 
   generi: Genere[] = [];
   film: Film = new Film();
-  file!: FormData;
+  fileLocandina!: FormData;
   errors: string[] = [];
   @ViewChild('file', {static: false})
   InputVar!: ElementRef;
@@ -33,22 +33,22 @@ export class FilmAddComponent implements OnInit {
 
   reset(): void{
     this.film = new Film();
-    this.deleteData();
+    this.deleteDataLocandina();
   }
 
-  prepareData(file: File): void{
-    this.file = new FormData();
-    this.file.append('file', file);
+  prepareDataLocandina(file: File): void{
+    this.fileLocandina = new FormData();
+    this.fileLocandina.append('file', file);
   }
 
-  deleteData(): void{
+  deleteDataLocandina(): void{
     this.InputVar.nativeElement.value = '';
   }
 
-  save(file: HTMLInputElement|any): void {
-    this.prepareData(file.files[0]);
-    if (file.files[0] !== undefined){
-      this.film.locandina = file.files[0].name;
+  save(fileTempLocandina: HTMLInputElement|any): void {
+    this.prepareDataLocandina(fileTempLocandina.files[0]);
+    if (fileTempLocandina.files[0] !== undefined){
+      this.film.locandina = fileTempLocandina.files[0].name;
     }
     this.errors = [];
     if (this.film.titolo.length <= 0 && this.film.titolo === ''){
@@ -61,22 +61,23 @@ export class FilmAddComponent implements OnInit {
       this.vService.addFilm(this.film).subscribe(
         (response: any) => {
           alert(response.message);
-          if (file.files[0] !== undefined){
-            this.vService.addLocandina(this.file).subscribe(
+          if (fileTempLocandina.files[0] !== undefined){
+            this.vService.addLocandina(this.fileLocandina).subscribe(
               (response2: any) => {
-                console.log(response2.message);
+                alert(response2.message);
                 this.router.navigate(['/home/films']);
               },
               (error2: any) => {
-                console.error(error2.error.message);
+                alert('ERRORE! ' + error2.error.message);
               },
             );
-          }else{
+          }
+          else{
             this.router.navigate(['/home/films']);
           }
         },
         (error: any) => {
-          console.error(error.error.message);
+          alert('ERRORE! ' + error.error.message);
         },
       );
     }
