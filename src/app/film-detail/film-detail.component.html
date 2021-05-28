@@ -60,7 +60,7 @@
       </div>
 
       <!-- NON EFFETTUATO L'ACCESSO -->
-      <div class="row justify-content-center popup-rettangle border rounded shadow mt-3" *ngIf="!isAdmin() && isLogin()">
+      <div class="row justify-content-center popup-rettangle border rounded shadow mt-3" *ngIf="!isAdmin() || !isLogin()">
         <div class="col-auto">
             <a class="text-center fw-bold text-login" (click)="logout()">Effettua il login di Admin per modificare il film!</a>
             <button class="popup-button" (click)="logout()">Login</button>
@@ -69,7 +69,7 @@
 
     </div>
   </div>
-  <div class="row justify-content-center border rounded shadow m-1 pt-2 pb-2" *ngIf="isLogin() === true && isAdmin() === true">
+  <div class="row justify-content-center border rounded shadow m-1 pt-2 pb-2" *ngIf="isLogin() && isAdmin()">
     <p class="text-center"><b>PANNELLO ADMIN</b></p>
     <div class="col-md-auto">
         <button class="btn btn-warning w-100 mt-1" routerLink="/home/edit/{{ film.id }}">

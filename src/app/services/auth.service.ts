@@ -61,6 +61,7 @@ export class AuthService {
     this.utente.pwd = pwd;
     this.utentiService.loginUtente(this.utente).subscribe(
       (response: any) => {
+        console.log(response);
         this.setLogin(true);
         this.utente.id = response.id;
         this.utente.nickname = response.nickname;

@@ -1,9 +1,7 @@
 import { Commento } from './../classes/commento';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
-const IP_WEB_SERVER = 'http://192.168.1.208';
-const URL_COMMENTI = '/web-server/api/videoteca/commenti';
+import { UrlServerService } from './server.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +10,16 @@ export class CommentiService {
 
   allComment: Commento[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private urlServerService: UrlServerService,
+  ) { }
 
   send(commento: Commento): void{
     // INVIO COMMENTO
     this.setCommento(commento).subscribe(
       (response: any) => {
+        console.log('commento inviato');
         console.log(response);
       },
       (error: any) => {
@@ -39,11 +41,12 @@ export class CommentiService {
   }
 
   private getCommenti(): any{
-    return this.http.get(IP_WEB_SERVER + URL_COMMENTI);
+    return this.http.get(this.urlServerService.getUrlCommenti());
   }
 
   private setCommento(commento: Commento): any{
+    console.log(this.urlServerService.getUrlCommenti());
     const temp = JSON.stringify(commento);
-    return this.http.post(IP_WEB_SERVER + URL_COMMENTI, temp);
+    return this.http.post(this.urlServerService.getUrlCommenti(), temp);
   }
 }

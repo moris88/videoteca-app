@@ -8,7 +8,7 @@
 
     <div class="row justify-content-center mt-2 mb-2">
       <div class="col-md-5">
-        <span class="input-group-text text-wrap">Email: </span>
+        <span class="input-group-text text-wrap"><b>Email:</b> </span>
       </div>
       <div class="col-md-5">
         <span class="input-group-text text-wrap">{{ current.email }}</span>
@@ -20,7 +20,7 @@
 
     <div class="row justify-content-center mt-2 mb-2">
       <div class="col-md-5">
-        <span class="input-group-text text-wrap">Nickname: </span>
+        <span class="input-group-text text-wrap"><b>Nickname:</b> </span>
       </div>
       <div class="col-md-5">
         <span class="input-group-text text-wrap">{{ current.nickname }}</span>
@@ -32,7 +32,7 @@
 
     <div class="row justify-content-center mt-2 mb-2">
       <div class="col-md-5">
-        <span class="input-group-text text-wrap">Cambiare Password? </span>
+        <span class="input-group-text text-wrap"><b>Cambiare Password?</b> </span>
       </div>
       <div class="col-md-5">
         <input type="password" class="form-control" disabled value="password">
@@ -44,7 +44,7 @@
 
     <div class="row justify-content-center mt-2 mb-2">
       <div class="col-md-10">
-        <span class="input-group-text text-wrap">Vuoi eliminare il tuo account? </span>
+        <span class="input-group-text text-wrap"><b>Vuoi eliminare il tuo account?</b> </span>
       </div>
       <div class="col-md-1">
         <input type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteMyAccount" value="Elimina">
@@ -53,7 +53,7 @@
 
     <div class="row justify-content-center mt-2 mb-2">
       <div class="col-md-11">
-        <p> <i>Creazione Account: {{ current.data_insert }}</i> </p>
+        <p> <b><i>Account creato il {{ current.data_insert | date:'dd/MM/yyyy' }} alle  {{ current.data_insert | date:'HH:mm' }}</i></b> </p>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@
 
     <div class="row justify-content-center mt-2 mb-2">
       <div class="col-md-11">
-        <p> <i>Qui altre impostazioni</i> </p>
+        <p> ---<i>Qui altre impostazioni</i>--- &nbsp;&nbsp;&nbsp;&nbsp; [WORK IN PROGRESS!] </p>
       </div>
     </div>
   </div>
