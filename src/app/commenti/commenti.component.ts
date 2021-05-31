@@ -1,5 +1,5 @@
 import { CommentiService } from './../services/commenti.service';
-import { Component, OnInit } from '@angular/core';
+import { Attribute, Component, OnInit } from '@angular/core';
 import { Commento } from '../classes/commento';
 import { AuthService } from '../services/auth.service';
 
@@ -11,11 +11,15 @@ import { AuthService } from '../services/auth.service';
 export class CommentiComponent implements OnInit {
 
   myComment = new Commento();
+  view = false; 
 
   constructor(
     private authService: AuthService,
     private commentiService: CommentiService,
-  ) { }
+    @Attribute('view') text: string,
+  ) { 
+    text === 'true' ? this.view = true : this.view = false;
+  }
 
   ngOnInit(): void {
     this.commentiService.update();
@@ -32,10 +36,6 @@ export class CommentiComponent implements OnInit {
 
   get myNickname(): string{
     return this.authService.utente.nickname;
-  }
-
-  isLogin(): boolean{
-    return this.authService.isLogin();
   }
 
   inviaCommento(): void{

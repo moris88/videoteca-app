@@ -69,22 +69,8 @@
     <app-search></app-search>
 </div>
 
-<div class="mb-5">
-    <app-commenti></app-commenti>
-</div>
+<app-commenti *ngIf="isLogin()" view="true"></app-commenti>
+<app-commenti *ngIf="!isLogin()" view="false"></app-commenti>
 
-<div class="mb-5" *ngIf="isLogin() === false">
-    <h4 class="text-center">---</h4>
-</div>
-
-<div class="row justify-content-center popup-rettangle border rounded shadow mb-5" *ngIf="isLogin() === false">
-    <div class="col-auto">
-        <a class="text-center fw-bold text-login" routerLink="/home/login">Effettua il login per commentare!</a>
-        <button class="popup-button" routerLink="/home/login">Login</button>
-    </div>
-</div>
-
-<div class="mb-5" *ngIf="isLogin() === false">
-    <h4 class="text-center">---</h4>
-</div>
-
+<app-request-login *ngIf="!isLogin()" text="Effettua il login per commentare!" view="true"></app-request-login>
+<app-request-login *ngIf="isLogin()" text="" view="false"></app-request-login>

@@ -1,5 +1,14 @@
 #footer{
     position: absolute;
     bottom: 0px;
-    height: 4rem;
+    height: 18rem;
+}
+
+
+
+@media only screen and (max-width: 768px) {
+    
+    .text-footer{
+        font-size: 8px;
+    }
 }

@@ -21,6 +21,7 @@ import { SearchComponent } from './search/search.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CommentiComponent } from './commenti/commenti.component';
+import { RequestLoginComponent } from './request-login/request-login.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CommentiComponent } from './commenti/commenti.component';
     LoginComponent,
     RegisterComponent,
     CommentiComponent,
+    RequestLoginComponent,
   ],
   imports: [
     BrowserModule,

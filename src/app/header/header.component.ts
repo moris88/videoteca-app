@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
 export class HeaderComponent implements OnInit {
 
   // tslint:disable-next-line: variable-name
-  private _title: string;
+  private textTitle: string;
   searchTitle = '';
 
   constructor(
@@ -18,11 +18,11 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     ) {
-    this._title = title;
+    this.textTitle = title;
   }
 
   get title(): string{
-    return this._title;
+    return this.textTitle;
   }
 
   isLogin(): boolean{
@@ -46,7 +46,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['/home/search/' + this.searchTitle]);
       this.searchTitle = '';
     }else{
-      window.alert('Inserisci un titolo per la ricerca!');
+      this.router.navigate(['/home/search']);
     }
   }
 

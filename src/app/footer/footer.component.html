@@ -1,3 +1,13 @@
 <footer class="container-fluid bg-dark shadow" id="footer">
-    <p class="text-white text-center m-0 pt-3 pb-3">{{ text_content }}</p>
+    <div class="row justify-content-center">
+        <div class="col-6 text-white text-center pt-3 text-footer">
+            <p><b>Sviluppatore: </b>{{ sviluppatore }}</p>
+            <p><b>Email: </b><a style="text-decoration: none; color:white;" href="mailto:{{ email }}">{{ email }}</a></p>
+            <p><b>Cell: </b><a style="text-decoration: none; color:white;" href="tel:{{ cell }}">{{ cell }}</a></p>
+            <p><b>Indirizzo: </b>{{ indirizzo }}</p>
+            <p><a style="text-decoration: none; color:white;" href="{{ linkedin }}"><b>Linkedin</b></a></p>
+            <hr>
+            <small>Copyright (c) 2021 Copyright {{ company }} All Rights Reserved.</small>
+        </div>
+    </div>
 </footer>

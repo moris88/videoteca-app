@@ -15,6 +15,7 @@ export class FilmDetailComponent implements OnInit {
   generi: Genere[] = [];
   tipo: any;
   film: Film = new Film();
+  viewImage = false;
 
   constructor(
     private vService: VideotecaService,
@@ -42,6 +43,14 @@ export class FilmDetailComponent implements OnInit {
     );
   }
 
+  changeViewImage(): void{
+    this.viewImage === true ? this.viewImage = false : this.viewImage = false;
+  }
+
+  isViewImage(): boolean{
+    return this.viewImage;
+  }
+
   deleteLocandina(): void{
     this.vService.deleteLocandina(this.film.id).subscribe(
       (response: any) => {
@@ -66,4 +75,5 @@ export class FilmDetailComponent implements OnInit {
     this.authService.logout();
     this.router.navigate(['/home/login']);
   }
+
 }

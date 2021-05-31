@@ -2,28 +2,20 @@
     box-shadow: 5px 5px 7px 5px rgb(165, 165, 165);
 }
 
-.film_image {
-    width: 25rem;
+.div-image {
+    width: 100%;
 }
 
-#lettoreVideo{
-    width: 600px;
-    height: 400px;
-    max-width: 600px;
-    max-height: 400px;
-}
-
-@media only screen and (max-width: 768px) {
-    #lettoreVideo{
-        width: 300px;
-        height: 200px;
-        max-width: 300px;
-        max-height: 200px;
-    }  
+.film-big-image{
+    height: 100%;
 }
 
 .container{
     background-color: aliceblue;
+}
+
+.container-admin{
+    background-color:rgb(232, 255, 254);
 }
 
 .popup-button {
@@ -75,13 +67,22 @@
     content: ">>";
 }
 
-@media only screen and (max-width: 575px) {
+@media only screen and (max-width: 768px) {
 
-    .film_image {
-        padding-left: 15px;
-        padding-right: 15px;
+    .div-image {
+        width: 15rem;
+        margin: auto;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+
+    .div-image {
         width: 100%;
     }
+}
+
+@media only screen and (max-width: 575px) {
 
     #lettoreVideo{
         width: 250px;
