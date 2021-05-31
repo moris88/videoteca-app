@@ -22,6 +22,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CommentiComponent } from './commenti/commenti.component';
 import { RequestLoginComponent } from './request-login/request-login.component';
+import { ForgetComponent } from './forget/forget.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { RequestLoginComponent } from './request-login/request-login.component';
     RegisterComponent,
     CommentiComponent,
     RequestLoginComponent,
+    ForgetComponent,
   ],
   imports: [
     BrowserModule,

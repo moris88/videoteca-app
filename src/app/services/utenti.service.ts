@@ -13,9 +13,14 @@ export class UtentiService {
     private urlServerService: UrlServerService,
   ) {}
 
+  //INVIA UNA EMAIL PER RECUPERARE LA PASSWORD
+  forgetUtente(utente: Utente){
+    const temp = JSON.stringify(utente);
+    return this.httpClient.post(this.urlServerService.getUrlUtenti() + '/action=email', temp);
+  }
   // INVIA NEWSLETTER A TUTTE LE EMAIL SALVATE SUL SERVER
   sendFilmUtente(): any{
-    return this.httpClient.post(this.urlServerService.getUrlUtenti() + '/action=email', null);
+    return this.httpClient.post(this.urlServerService.getUrlUtenti() + '/action=newsletter', null);
   }
   // ELIMINA UN UTENTE IN BASE ALL'ID (ID = DATA)
   deleteUtente(id: string): any{

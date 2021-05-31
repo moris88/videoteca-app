@@ -19,13 +19,11 @@ export class AdminGuardService implements CanActivate{
 
       if (this.authService.isLogin() && this.authService.isAdmin()) {
         return true;
-      }
-      if (this.authService.isLogin() && !this.authService.isAdmin()){
+      }else if (this.authService.isLogin() && !this.authService.isAdmin()){
         window.alert('Devi loggarti come admin per visualizzare questa pagina');
         this.router.navigate(['/home']);
         return false;
-      }
-      else{
+      }else {
         window.alert('Devi loggarti per visualizzare questa pagina');
         this.router.navigate(['/home']);
         return false;

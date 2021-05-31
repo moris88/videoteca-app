@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
           this.loading = true;
           this.authService.register(this.newEmail, this.newPwd);
           setTimeout(() => {
-            console.log(this.authService.error);
             if (this.authService.error === false){
               this.success = true;
               this.newEmail = '';

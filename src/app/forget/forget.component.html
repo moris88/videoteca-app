@@ -1,0 +1,26 @@
+<form name="" class="container mt-5 border rounded shadow" (ngSubmit)="invia()" ngNativeValidate>
+    <h1 class="text-center pt-5">Password Dimenticata</h1>
+    <hr>
+    <div *ngIf="errorForget" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>ERRORE!</strong> {{ errorString }}.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div *ngIf="successForget" class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>SUCCESSO!</strong> {{ successString }}, ora effettua il <a href="" routerLink="/home/login">login</a> con la password temporanea e poi modificala!.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="row justify-content-center" id="row_email">
+        <div class="col-md-12 mt-3">
+          <input type="email" name="email" id="email" placeholder="Inserisci email" class="form-control" value="" [(ngModel)]="email" required>
+        </div>
+    </div>
+    <hr>
+    <div class="row justify-content-center mt-5 pb-5">
+        <div class="col-auto" *ngIf="!loading">
+            <button type="submit" class="btn btn-primary">Invia</button>
+        </div>
+        <div class="spinner-border text-primary" *ngIf="loading" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</form>

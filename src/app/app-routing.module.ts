@@ -13,10 +13,12 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { AdminGuardService } from './services/admin-guard.service';
 import { UserGuardService } from './services/user-guard.service';
+import { ForgetComponent } from './forget/forget.component';
 
 const routes: Routes = [
   { path: 'home', component: MainComponent},
   { path: 'home/login', component: LoginComponent},
+  { path: 'home/forget', component: ForgetComponent},
   { path: 'home/register', component: RegisterComponent},
   { path: 'home/search', component: SearchComponent},
   { path: 'home/search/:search', component: SearchComponent},

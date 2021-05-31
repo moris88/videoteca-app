@@ -50,7 +50,7 @@ export class AuthService {
     this.adminFlag = true;
   }
 
-  checkSession(): void{
+  async checkSession(){
     if (this.token.loadEmail() !== '' && this.token.loadPwd() !== ''){
       this.login(this.token.loadEmail(), this.token.loadPwd());
     }
@@ -61,7 +61,6 @@ export class AuthService {
     this.utente.pwd = pwd;
     this.utentiService.loginUtente(this.utente).subscribe(
       (response: any) => {
-        console.log(response);
         this.setLogin(true);
         this.utente.id = response.id;
         this.utente.nickname = response.nickname;
@@ -88,6 +87,20 @@ export class AuthService {
     this.utente.email = email;
     this.utente.pwd = pwd;
     this.utentiService.registerUtente(this.utente).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.error = false;
+      },
+      (error: any) => {
+        console.log(error);
+        this.error = true;
+      },
+    );
+  }
+
+  forget(email: string): void{
+    this.utente.email = email;
+    this.utentiService.forgetUtente(this.utente).subscribe(
       (response: any) => {
         console.log(response);
         this.error = false;
