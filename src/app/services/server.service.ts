@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class UrlServerService {
 
-  private ipWebServer = '192.168.1.208';
+  private ipWebServer = '192.168.1.184';
   private urlUtenti = '/web-server/api/utenti';
   private urlFilm = '/web-server/api/videoteca';
   private urlCommenti = '/web-server/api/commenti';
